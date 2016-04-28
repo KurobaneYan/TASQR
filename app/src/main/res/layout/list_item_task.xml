@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:andoid="http://schemas.android.com/apk/res/android"
+    andoid:layout_width="match_parent"
+    andoid:layout_height="wrap_content"
+    andoid:minHeight="?android:attr/listPreferredItemHeight"
+    andoid:gravity="center_vertical"
+    andoid:id="@+id/list_item_task_textview"/>
