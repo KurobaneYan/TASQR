@@ -31,7 +31,15 @@ public class TaskArray {
     }
 
     public void addTask(Task task) {
-        array.add(task);
+        boolean flag = true;
+        for (int i = 0; i < array.size(); ++i) {
+            if (array.get(i).getName().equals(task.getName())) {
+                flag = false;
+            }
+        }
+        if (flag && !array.contains(task)) {
+            array.add(task);
+        }
     }
 
     public Task getTaskById(int id) {
