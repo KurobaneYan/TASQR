@@ -8,6 +8,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.kurobane.yan.tasqr.AddTaskActivityFragment"
     tools:showIn="@layout/activity_add_task">
-
-
 </RelativeLayout>

@@ -12,8 +12,9 @@ import android.widget.TextView;
  * A placeholder fragment containing a simple view.
  */
 public class DetailActivityFragment extends Fragment {
-
+    Task temp;
     public DetailActivityFragment() {
+        temp = new Task();
     }
 
     @Override
@@ -23,10 +24,13 @@ public class DetailActivityFragment extends Fragment {
 
         // The detail Activity called via intent.  Inspect the intent for forecast data.
         Intent intent = getActivity().getIntent();
-        if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
-            String forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
-            ((TextView) rootView.findViewById(R.id.detail_text))
-                    .setText(forecastStr);
+        if (intent != null && intent.hasExtra(Intent.EXTRA_TITLE)) {
+            String taskTitle = intent.getStringExtra(Intent.EXTRA_TITLE);
+            temp = new Task(taskTitle);
+
+            int taskId = intent.getIntExtra(Intent.EXTRA_UID, 0);
+
+            ((TextView) rootView.findViewById(R.id.detail_text)).setText(taskTitle);
         }
         return rootView;
     }

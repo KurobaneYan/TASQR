@@ -2,15 +2,19 @@ package com.kurobane.yan.tasqr;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayAdapter<String> mTaskAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+
+//        Date date = new Date();
+//        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+//        mTimeText.setText("Time: " + dateFormat.format(date));
+
+        new CountDownTimer(30000, 1000) {
+            TextView mTextField = (TextView) findViewById(R.id.time);
+            public void onTick(long millisUntilFinished) {
+                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                mTextField.setText("done!");
+            }
+        }.start();
+
     }
 
     @Override
@@ -43,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

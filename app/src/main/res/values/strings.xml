@@ -4,4 +4,8 @@
     <string name="title_activity_detail">Task Details</string>
     <string name="hello_world">Hello Secong activity</string>
     <string name="title_activity_add_task">Add Task</string>
+    <string name="start_button">Start new Task</string>
+    <string name="decrease_time_span">-</string>
+    <string name="increase_time_span">+</string>
+    <string name="time_span">1</string>
 </resources>
