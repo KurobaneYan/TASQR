@@ -12,20 +12,15 @@ import android.widget.ListView;
 
 public class MainActivityFragment extends Fragment {
     ArrayAdapter<String> mTaskAdapter;
-    public TaskArray allTasks;
+    TaskArray allTasks;
 
     public MainActivityFragment() {
-        allTasks = new TaskArray();
+        allTasks = TaskArray.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        allTasks.addTask(new Task("Test"));
-        allTasks.addTask(new Task("Test2"));
-        allTasks.addTask(new Task("Test3"));
-        allTasks.addTask(new Task("Test4"));
 
         mTaskAdapter = new ArrayAdapter<>(
                 getActivity(),

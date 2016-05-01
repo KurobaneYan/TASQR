@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskArray {
+    private static TaskArray instance = null;
     private static List<Task> array;
 
-    public TaskArray() {
+    protected TaskArray() {
         array = new ArrayList<>();
+    }
+
+    public static TaskArray getInstance() {
+        if (instance == null) {
+            instance = new TaskArray();
+        }
+        return instance;
     }
 
     public List<Task> getArray() {

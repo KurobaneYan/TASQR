@@ -13,8 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    TaskArray allTasks;
     ArrayAdapter<String> mTaskAdapter;
+
+    public MainActivity() {
+        allTasks = TaskArray.getInstance();
+        allTasks.addTask(new Task("Test"));
+        allTasks.addTask(new Task("Test2"));
+        allTasks.addTask(new Task("Test3"));
+        allTasks.addTask(new Task("Test4"));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
 
 //        Date date = new Date();
 //        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
