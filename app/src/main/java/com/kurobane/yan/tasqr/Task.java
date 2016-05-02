@@ -2,15 +2,18 @@ package com.kurobane.yan.tasqr;
 
 public class Task {
     private String Name;
-    private Integer totalRepetition;
-    private Integer length;
+    private Integer totalRepetitions;
     private boolean isPerforming;
 
-    public Task () { }
+    public Task () {
+        isPerforming = false;
+        totalRepetitions = 0;
+    }
 
     public Task(String name) {
         setName(name);
         isPerforming = false;
+        totalRepetitions = 0;
     }
 
     public void setName (String name) {
@@ -21,12 +24,20 @@ public class Task {
         return Name;
     }
 
-    public void setTotalRepetition (Integer newVar) {
-        totalRepetition = newVar;
+    public void setTotalRepetitions(Integer newRepetitions) {
+        totalRepetitions = newRepetitions;
     }
 
-    public Integer getTotalRepetition () {
-        return totalRepetition;
+    public Integer getTotalRepetitions() {
+        return totalRepetitions;
+    }
+
+    public String getTotalRepetitionsToString() {
+        return totalRepetitions.toString();
+    }
+
+    public void addRepetition() {
+        totalRepetitions += 1;
     }
 
     public void startPerforming() {
@@ -35,18 +46,11 @@ public class Task {
 
     public void stopPerforming() {
         isPerforming = false;
+        addRepetition();
     }
 
     public boolean isPerforming() {
         return isPerforming;
-    }
-
-    public void setLength (Integer newVar) {
-        length = newVar;
-    }
-
-    public Integer getLength () {
-        return length;
     }
 
     @Override

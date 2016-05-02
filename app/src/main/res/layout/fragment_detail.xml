@@ -16,14 +16,19 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/repetitions_texview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/repetitions_textview_default"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/task_status"/>
     <TextView
         android:id="@+id/task_status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_status_indicator_default"/>
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/start_task"

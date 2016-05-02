@@ -17,6 +17,7 @@ public class DetailActivityFragment extends Fragment {
     Task currentTask;
     Button startTask;
     Button stopTask;
+    TextView repetitionsTextView;
     public DetailActivityFragment() {
         taskArray = TaskArray.getInstance();
     }
@@ -27,7 +28,7 @@ public class DetailActivityFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         startTask = (Button) rootView.findViewById(R.id.start_task);
         stopTask = (Button) rootView.findViewById(R.id.stop_task);
-        // The detail Activity called via intent.  Inspect the intent for forecast data.
+
         Intent intent = getActivity().getIntent();
         if (intent != null && intent.hasExtra(Intent.EXTRA_TITLE)) {
             String taskTitle = intent.getStringExtra(Intent.EXTRA_TITLE);
@@ -35,6 +36,15 @@ public class DetailActivityFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.detail_text)).setText(currentTask.getName());
         }
 
+        repetitionsTextView = (TextView)rootView.findViewById(R.id.repetitions_texview);
+        repetitionsTextView.setText(currentTask.getTotalRepetitionsToString());
+
+        TextView taskStatusTextView = (TextView)rootView.findViewById(R.id.task_status);
+        if (currentTask.isPerforming()) {
+            taskStatusTextView.setText(R.string.task_status_indicator_performing);
+        } else {
+            taskStatusTextView.setText(R.string.task_status_indicator_not_performing);
+        }
 
         startTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +53,7 @@ public class DetailActivityFragment extends Fragment {
                     TextView taskStatusTextView = (TextView)rootView.findViewById(R.id.task_status);
                     taskStatusTextView.setText(R.string.task_status_indicator_performing);
                     currentTask.startPerforming();
+                    repetitionsTextView.setText(currentTask.getTotalRepetitionsToString());
                 }
             }
         });
@@ -54,6 +65,7 @@ public class DetailActivityFragment extends Fragment {
                     TextView taskStatusTextView = (TextView)rootView.findViewById(R.id.task_status);
                     taskStatusTextView.setText(R.string.task_status_indicator_not_performing);
                     currentTask.stopPerforming();
+                    repetitionsTextView.setText(currentTask.getTotalRepetitionsToString());
                 }
             }
         });
