@@ -10,4 +10,10 @@
     <string name="time_span">1</string>
     <string name="task_name_label">Enter Task name</string>
     <string name="button_add_task">Add Task</string>
+    <string name="button_start_task">Start Task</string>
+    <string name="task_status">Status:</string>
+    <string name="task_status_indicator_default">Task is Not performing</string>
+    <string name="task_status_indicator_performing">Task is performing</string>
+    <string name="task_status_indicator_not_performing">Task is NOT performing</string>
+    <string name="button_stop_task">Stop task</string>
 </resources>

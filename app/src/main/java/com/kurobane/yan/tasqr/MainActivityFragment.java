@@ -39,8 +39,7 @@ public class MainActivityFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String title = mTaskAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class)
-                        .putExtra(Intent.EXTRA_TITLE, title)
-                        .putExtra(Intent.EXTRA_UID, allTasks.getTaskId(title));
+                        .putExtra(Intent.EXTRA_TITLE, title);
                 startActivity(intent);
             }
         });

@@ -4,11 +4,13 @@ public class Task {
     private String Name;
     private Integer totalRepetition;
     private Integer length;
+    private boolean isPerforming;
 
     public Task () { }
 
     public Task(String name) {
         setName(name);
+        isPerforming = false;
     }
 
     public void setName (String name) {
@@ -27,6 +29,17 @@ public class Task {
         return totalRepetition;
     }
 
+    public void startPerforming() {
+        isPerforming = true;
+    }
+
+    public void stopPerforming() {
+        isPerforming = false;
+    }
+
+    public boolean isPerforming() {
+        return isPerforming;
+    }
 
     public void setLength (Integer newVar) {
         length = newVar;
@@ -38,8 +51,7 @@ public class Task {
 
     @Override
     public String toString() {
-        String output = "Name:\n" + getName();
-        return output;
+        return getName();
     }
 }
 
