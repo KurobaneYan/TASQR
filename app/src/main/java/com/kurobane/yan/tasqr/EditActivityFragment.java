@@ -10,7 +10,6 @@ import android.view.ViewGroup;
  * A placeholder fragment containing a simple view.
  */
 public class EditActivityFragment extends Fragment {
-
     public EditActivityFragment() {
     }
 

@@ -13,5 +13,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello Edit"/>
+        android:text="@string/label_new_task_name"/>
+
+    <TextView
+        android:id="@+id/current_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/new_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/button_change_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_change_task_name"/>
+
 </LinearLayout>
