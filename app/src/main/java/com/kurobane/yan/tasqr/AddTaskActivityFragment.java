@@ -6,28 +6,35 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class AddTaskActivityFragment extends Fragment {
-
+    Button addTaskButton;
+    EditText editTaskName;
+    TaskArray allTasks;
     public AddTaskActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        allTasks = TaskArray.getInstance();
         View rootView = inflater.inflate(R.layout.fragment_add_task, container, false);
-
-        // The detail Activity called via intent.  Inspect the intent for forecast data.
-        Intent intent = getActivity().getIntent();
-        if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
-            String forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
-            ((TextView) rootView.findViewById(R.id.detail_text))
-                    .setText(forecastStr);
-        }
+        editTaskName = (EditText) rootView.findViewById(R.id.edit_task_name);
+        addTaskButton = (Button) rootView.findViewById(R.id.button_add_task);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Task task = new Task(editTaskName.getText().toString());
+                allTasks.addTask(task);
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 }

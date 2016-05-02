@@ -8,4 +8,6 @@
     <string name="decrease_time_span">-</string>
     <string name="increase_time_span">+</string>
     <string name="time_span">1</string>
+    <string name="task_name_label">Enter Task name</string>
+    <string name="button_add_task">Add Task</string>
 </resources>
