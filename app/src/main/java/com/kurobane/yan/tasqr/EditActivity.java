@@ -10,14 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity {
-    TaskArray taskArray;
     Task currentTask;
     TextView taskName;
     EditText newTaskName;
     Button changeTaskName;
-    public EditActivity() {
-        taskArray = TaskArray.getInstance();
-    }
+    Button deleteTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +22,14 @@ public class EditActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final MySQLiteHelper db = MySQLiteHelper.getInstance(this);
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(Intent.EXTRA_TITLE)) {
             String taskTitle = intent.getStringExtra(Intent.EXTRA_TITLE);
-            currentTask = taskArray.getTaskById(taskArray.getTaskId(taskTitle));
+            int id = intent.getIntExtra(Intent.EXTRA_UID, 0);
+            currentTask = db.getTask(id);
+//            currentTask = taskArray.getTaskById(taskArray.getTaskId(taskTitle));
             taskName = (TextView) findViewById(R.id.current_task_name);
             taskName.setText(currentTask.getName());
         }
@@ -40,6 +41,17 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentTask.setName(newTaskName.getText().toString());
+                db.updateTask(currentTask);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        deleteTask = (Button) findViewById(R.id.button_delete_task);
+        deleteTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.deleteTask(currentTask);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }

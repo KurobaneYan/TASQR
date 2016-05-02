@@ -8,19 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    TaskArray allTasks;
-    ArrayAdapter<String> mTaskAdapter;
+    Button saveTasks;
 
-    public MainActivity() {
-        allTasks = TaskArray.getInstance();
-        allTasks.addTask(new Task("Test"));
-        allTasks.addTask(new Task("Test2"));
-        allTasks.addTask(new Task("Test3"));
-        allTasks.addTask(new Task("Test4"));
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-//        Date date = new Date();
-//        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-//        mTimeText.setText("Time: " + dateFormat.format(date));
-
-//        new CountDownTimer(30000, 1000) {
-//            TextView mTextField = (TextView) findViewById(R.id.time);
-//            public void onTick(long millisUntilFinished) {
-//                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-//            }
-//
-//            public void onFinish() {
-//                mTextField.setText("done!");
-//            }
-//        }.start();
-
     }
 
     @Override

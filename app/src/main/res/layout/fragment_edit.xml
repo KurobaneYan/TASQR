@@ -32,4 +32,10 @@
         android:layout_height="wrap_content"
         android:text="@string/button_change_task_name"/>
 
+    <Button
+        android:id="@+id/button_delete_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_delete_task"/>
+
 </LinearLayout>

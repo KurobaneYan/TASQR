@@ -20,4 +20,7 @@
     <string name="title_activity_edit">EditActivity</string>
     <string name="label_new_task_name">Enter new Task name, current:</string>
     <string name="button_change_task_name">Change Task name</string>
+    <string name="button_save_tasks">Save Tasks</string>
+    <string name="button_delete_task">Delete Task</string>
+    <string name="label_all_tasks">List of all Tasks(can be empty):</string>
 </resources>

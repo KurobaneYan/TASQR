@@ -10,23 +10,25 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class MainActivityFragment extends Fragment {
     ArrayAdapter<String> mTaskAdapter;
-    TaskArray allTasks;
-
-    public MainActivityFragment() {
-        allTasks = TaskArray.getInstance();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        MySQLiteHelper db = MySQLiteHelper.getInstance(getActivity());
+
+        final List<Task> tasks = db.getAllTasks();
+        List<String> tasksStringArray = db.getToStringArray();
+
         mTaskAdapter = new ArrayAdapter<>(
                 getActivity(),
                 R.layout.list_item_task,
                 R.id.list_item_task_textview,
-                allTasks.getToStringArray()
+                tasksStringArray
         );
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -38,8 +40,16 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String title = mTaskAdapter.getItem(position);
+                int id = 0;
+                for (int i = 0; i < tasks.size(); ++i) {
+                    if (tasks.get(i).getName().equals(title)) {
+                        id = tasks.get(i).getId();
+                    }
+                }
+
                 Intent intent = new Intent(getActivity(), DetailActivity.class)
-                        .putExtra(Intent.EXTRA_TITLE, title);
+                        .putExtra(Intent.EXTRA_TITLE, title)
+                        .putExtra(Intent.EXTRA_UID, id);
                 startActivity(intent);
             }
         });

@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
     TextView taskTitle;
     @Override
@@ -17,18 +19,28 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        MySQLiteHelper db = MySQLiteHelper.getInstance(this);
+
         taskTitle = (TextView)findViewById(R.id.detail_text);
+
+        final List<Task> tasks = db.getAllTasks();
+        final String title = taskTitle.getText().toString();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-//                    Snackbar.make(view, "TODO replace with EditTask intent", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
+                    int id = 0;
+                    for (int i = 0; i < tasks.size(); ++i) {
+                        if (tasks.get(i).getName().equals(title)) {
+                            id = tasks.get(i).getId();
+                        }
+                    }
                     Intent intent = new Intent(getApplicationContext(), EditActivity.class)
-                            .putExtra(Intent.EXTRA_TITLE, taskTitle.getText().toString());
+                            .putExtra(Intent.EXTRA_TITLE, taskTitle.getText().toString())
+                            .putExtra(Intent.EXTRA_UID, id);
                     startActivity(intent);
                 }
             });

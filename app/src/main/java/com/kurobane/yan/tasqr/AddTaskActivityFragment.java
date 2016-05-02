@@ -15,14 +15,11 @@ import android.widget.EditText;
 public class AddTaskActivityFragment extends Fragment {
     Button addTaskButton;
     EditText editTaskName;
-    TaskArray allTasks;
-    public AddTaskActivityFragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        allTasks = TaskArray.getInstance();
+        final MySQLiteHelper db = MySQLiteHelper.getInstance(getActivity());
         View rootView = inflater.inflate(R.layout.fragment_add_task, container, false);
         editTaskName = (EditText) rootView.findViewById(R.id.edit_task_name);
         addTaskButton = (Button) rootView.findViewById(R.id.button_add_task);
@@ -30,7 +27,7 @@ public class AddTaskActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Task task = new Task(editTaskName.getText().toString());
-                allTasks.addTask(task);
+                db.addTask( task);
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
             }
