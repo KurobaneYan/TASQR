@@ -17,6 +17,7 @@ public class DetailActivityFragment extends Fragment {
     Task currentTask;
     Button startTask;
     Button stopTask;
+    TextView taskName;
     TextView repetitionsTextView;
     public DetailActivityFragment() {
         taskArray = TaskArray.getInstance();
@@ -33,7 +34,8 @@ public class DetailActivityFragment extends Fragment {
         if (intent != null && intent.hasExtra(Intent.EXTRA_TITLE)) {
             String taskTitle = intent.getStringExtra(Intent.EXTRA_TITLE);
             currentTask = taskArray.getTaskById(taskArray.getTaskId(taskTitle));
-            ((TextView) rootView.findViewById(R.id.detail_text)).setText(currentTask.getName());
+            taskName = (TextView) rootView.findViewById(R.id.detail_text);
+            taskName.setText(currentTask.getName());
         }
 
         repetitionsTextView = (TextView)rootView.findViewById(R.id.repetitions_texview);

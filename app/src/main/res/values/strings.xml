@@ -17,4 +17,5 @@
     <string name="task_status_indicator_not_performing">Task is NOT performing</string>
     <string name="button_stop_task">Stop task</string>
     <string name="repetitions_textview_default">0</string>
+    <string name="title_activity_edit">EditActivity</string>
 </resources>
